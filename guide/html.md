@@ -111,10 +111,10 @@
 
 ## 练习
 
-* 自己编写一个HTML文件，在浏览器中查看效果。尝试[[W3C School - Tags](http://www.w3school.com.cn/tags/index.asp)中的标签，例如：a，p，div，img，input，ul，ol。
+* 自己编写一个HTML文件，在浏览器中查看效果。尝试[W3C School - Tags](http://www.w3school.com.cn/tags/index.asp)中的标签，例如：a，p，div，img，input，ul，ol。
 * tmux-intro：编写html页面，展现下图内容
 
-![tmux](./html-exercise1/html-exercise1.png)
+![tmux](./exercise/html-exercise1/html-exercise1.png)
 
 
 ## References
