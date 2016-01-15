@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>CSS Display</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	.sample-block {
+		margin: 20px;
+		border: 1px solid;
+	}
+	</style>
+</head>
+<body>	
+
+<div class="sample-block">
+	<p>This section is to show the 'display' property:</p>
+	<div style="background-color: green">This is a DIV block</div>
+	<div style="background-color: red">This is another DIV block</div>
+	<div style="background-color: yellow">
+		<span>span is inline by default</span> &nbsp;<a href="#">'a' is inline by default</a>
+	</div>
+	<div>
+		<div style="background-color: red;; display: inline">Div can be set as inline</div><div style="background-color: green; display: inline">Div can be set as inline</div>
+	</div>
+	<div>
+		<div><span style="height: 100px">This is an inline element - span, which can not be set width and height</span></div>
+		<div>
+			 <div style="display: inline-block; height: 50px; background-color: green;">This is a div set as inline-block</div>
+			 <span style="background-color: red;">This is an inline span</span>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

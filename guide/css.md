@@ -12,81 +12,184 @@
 
 HTML负责文档内容和结构，CSS负责表现。
 
-#### 一个简单的例子
+#### 示例一
 
-	<html>
 	<head>
-		<title>Basic HTML</title>
-		<meta charset="UTF-8">
+		<title>CSS Sample</title>
+		<style type="text/css">
+		.sample {
+			color: #aa6708;
+			font-family: Arial;
+			padding: 5px 10px;
+		}
+
+		.code-block {
+			margin-left: 20px;
+			font-style: italic;
+			color: white;
+			background-color: #383838;
+			padding: 10px;
+		}
+		</style>
 	</head>
-	<body>
 
-	<!-- Headings -->
-	<h1>My First Heading 1</h1>
-	<h2>My First Heading 2</h2>
-	<h3>My First Heading 3</h3>
-
-	<!-- Paragraphs -->
-	<p>My first paragraph.</p>
-
-	<p>
-		<!-- Unordered list -->
-		Good Tutorial:
-		<ul>
-			<li><a href="http://www.w3school.com.cn">W3School (Chinese)</a></li>
-			<li><a href="http://www.w3schools.com/html/default.asp">W3School (English)</a></li>
-		</ul>
-	</p>
-
-	</body>
-	</html>
-
-打开[链接](./samples/basic.html)查看效果。
+打开[链接](./samples/css-basic.html)查看效果。
 
 要点：
-* 标签
-* 注释
-* 文档结构
-* 标签嵌套
-* 属性（Attribute）
+* 标签`<style>`
+* class
+* selector
+* syntax
+* Property - Value
 
-## Tips
+#### 示例二 - 边框设置
 
-#### HTML字符集
+	<style type="text/css">
+	.code-block {
+		margin-left: 20px;
+		font-style: italic;
+		color: white;
+		background-color: #383838;
+		padding: 10px;
+	}
 
-字符集简介：
-* ASCII
-* ISO-8859-1 （HTML默认编码）
-* UTF-8
-* GBK
+	.border-sample {
+		padding: 10px;
+		border: 2px solid;
+	}
+	</style>
 
-声明字符集：
+打开[链接](./samples/css-border.html)查看效果。
 
-	For HTML4:
-	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+## CSS 语法
 
-	For HTML5:
-	<meta charset="UTF-8">
+	selector {property: value; property: value; ...}
 
-需转义的特殊字符：
+#### CSS选择器：Selector
 
-	'<' -> &lt;
-	'>' -> &gt;
+* 元素选择器
+* 类选择器
+* ID选择器
+* 属性选择器
+* 后代选择器
+* 子元素选择器
+* 相邻兄弟选择器
+* 伪类
+* 伪元素
 
-#### 浏览器解释HTML文档时会忽略空白符
+元素选择器
 
-* 换行
-* 空格
+	h1 {color: red;}
 
-换行可以用<br>，标签间空格可以通过转义字符 `&nbsp;`, 但不建议使用。一般通过CSS样式控制.
+类选择器
 
-## 练习
+	h1.page-title {font-size: 36px;}
+	span.name {font-weight: bold;}
 
-* 自己编写一个HTML文件，在浏览器中查看效果。尝试[[W3C School - Tags](http://www.w3school.com.cn/tags/index.asp)中的标签，例如：a，p，div，img，input，ul，ol。
-* tmux-intro：编写html页面，展现下图内容
+ID选择器
 
-![tmux](./html-exercise1/html-exercise1.png)
+	#name {color: red;}
 
+属性选择器
+
+	input[type=button] {width: 200px;}
+
+后代选择器
+
+	h1 em {color:red;}
+	h1 .highlight {color: red;}
+
+子元素选择器
+
+	h1 > strong {color:red;}
+
+相邻兄弟选择器
+
+	h3 > p {color:red;}
+
+伪类
+
+	a:link {color: #FF0000}		/* 未访问的链接 */
+	a:visited {color: #00FF00}	/* 已访问的链接 */
+	a:hover {color: #FF00FF}	/* 鼠标移动到链接上 */
+	a:active {color: #0000FF}	/* 选定的链接 */
+
+伪元素
+
+	p:first-letter {
+		color:#ff0000;
+		font-size:xx-large;
+	}
+
+选择器分组
+
+	h2, p {color:gray;}
+
+#### 练习
+
+为HTML文档设置样式，使其按照下图展示。
+
+![](./exercise/css-exercise1/css-exercise.png)
+
+
+## CSS 盒模型
+
+* border
+* margin
+* padding
+* height
+* width
+
+## 层叠次序
+
+当同一个 HTML 元素被不止一个样式定义时，会使用哪个样式呢？
+
+一般而言，所有的样式会根据下面的规则层叠于一个新的虚拟样式表中，其中数字 4 拥有最高的优先权。
+
+* 浏览器缺省设置
+* 外部样式表
+* 内部样式表（位于 `<head>` 标签内部）
+* 内联样式（在 HTML 元素内部）
+
+
+## 选择器优先级计算
+
+* Calculate the number of times the __ID__ attributes in the selector
+* Calculate the number of times the __CLASS__ attributes in the selector
+* Calculate the number of times the HTML tag names in the selector
+
+HTML Snippet:
+
+	<ul>
+	  <li>
+	    <ul>
+	      <li class='thislist' id='thislist'>hello!</li>
+	      <li></li>
+	    </ul>
+	  </li>
+	  <li></li>
+	</ul>
+
+CSS Snippet:
+
+	#thislist {color: black;} /*a: 1 b: 0 c: 0 = 100*/
+	ul li ul li.thislist {color: green;} /*a: 0 b: 1 c: 4 = 014*/
+	li.thislist {color: red;} /*a: 0 b: 1 c: 1 = 011*/
+	li {color: blue;} /*a: 0 b: 0 c: 1 = 001*/
+
+`!important`
+
+	h1.title {color:#FFF !important;}
+
+## CSS定位
+
+#### display: block, inline, inline-block
+
+请看[示例](./samples/css-display.html)。
+
+#### 浮动
+
+[W3School - CSS 浮动](http://www.w3school.com.cn/css/css_positioning_floating.asp)
 
 ## References
 
