@@ -1,0 +1,44 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 36px;
+    margin-top: 20px;
+	margin-bottom: 10px;
+    font-weight: 500;
+	line-height: 1.1;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.center-block {
+	display: block;	
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.page-title {
+	text-align: center;
+}
+
+.kcb-logo {
+	width: 150px;
+}

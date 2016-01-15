@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Exercise</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	.main {
+		color: #333;
+		margin: 20px 40px;
+	    padding: 45px;
+	    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	    font-size: 16px;
+	    line-height: 1.6;
+	    border: 1px solid #ddd;
+    	border-radius: 3px;
+	}
+
+	a {
+		color: #4078c0;
+		text-decoration: none;
+	}
+
+	blockquote {
+		padding: 0 15px;
+	    color: #777;
+	    border-left: 4px solid #ddd;
+	}
+
+	h1 {
+		padding-bottom: 0.3em;
+	    font-size: 2.25em;
+	    line-height: 1.2;
+	    border-bottom: 1px solid #eee;
+	}
+
+	h2 {
+		padding-bottom: 0.3em;
+	    font-size: 1.75em;
+	    line-height: 1.225;
+	    border-bottom: 1px solid #eee;
+	}
+
+	h3 {
+		font-size: 1.5em;
+    	line-height: 1.43;
+	}
+
+	h4 {
+		margin-top: 1em;
+		font-size: 1.25em;
+	    margin-bottom: 16px;
+	    font-weight: bold;
+	    line-height: 1.4;
+	}
+
+	pre {
+		padding: 16px;
+	    font-size: 85%;
+	    line-height: 1.45;
+	    background-color: #f7f7f7;
+	    border-radius: 3px;
+	    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	}
+
+	pre code {
+		background-color: #f7f7f7;
+		font-size: 100%;
+	}
+
+	code {
+	    font-size: 85%;
+	    background-color: rgba(0,0,0,0.04);
+	    border-radius: 3px;
+	    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	    padding: 0.2em 0.5em;
+	}
+	</style>
+</head>
+<body>
+
+<div class="main">
+	<h1>Tmux Install and Usage</h1>
+	<a href="https://tmux.github.io/">tmux</a>:
+
+	<blockquote>
+	<p>tmux is a terminal multiplexer: it enables a number of terminals to be created, accessed, and controlled from a single screen. tmux may be detached from a screen and continue running in the background, then later reattached.</p>
+
+	<p>When tmux is started it creates a new session with a single window and displays it on screen...</p>
+	</blockquote>
+
+	<h2>使用实例</h2>
+
+	<p>tmux的session可以attach和dettach，执行远程机器脚本的时候，可以不用担心session断开导致前功尽弃。</p>
+
+	<p>常见的Command Key：</p>
+
+	<ul>
+		<li><code>$</code>: Rename the current session</li>
+		<li><code>%</code>: Split the current pane into two, left and right.</li>
+		<li><code>0 to 9</code>: Select windows 0 to 9</li>
+		<li><code>?</code>: List all key bindings</li>
+		<li><code>d</code>: Detach the current client</li>
+	</ul>
+
+	<h4>Detach the current session</h4>
+
+	<p><code>CTRL + b</code> + <code>D</code></p>
+
+	<h4>查看所有的session</h4>
+
+	<img src="./images/view-all-sessions.png">
+
+	<h4>Attach a session</h4>
+
+	<pre><code>tmux attach -t &lt;session name&gt;</code></pre>
+
+</div>
+</body>
+</html>

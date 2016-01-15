@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kacha Account Register</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<style type="text/css">
+	
+	.form-control {
+		display: block;
+	    width: 100%;
+	    height: 34px;
+	    padding: 6px 12px;
+	    font-size: 14px;
+	    line-height: 1.42857143;
+	    color: #555;
+	    background-color: #fff;
+	    background-image: none;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	}
+
+	.radio-inline {
+	    margin-bottom: 0;
+	    font-weight: normal;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    padding-right: 10px;
+	}
+
+	input[type=radio] {
+		margin-right: 8px;
+	}
+
+	.register-form {
+		max-width: 500px;
+	}
+
+	.pull-right {
+		float: right;
+	}
+
+	.btn {
+		display: inline-block;
+	    padding: 6px 12px;
+	    margin-bottom: 0;
+	    font-size: 14px;
+	    font-weight: normal;
+	    line-height: 1.42857143;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    background-image: none;
+	    border: 1px solid transparent;
+	    border-radius: 4px;
+	}
+
+	.btn-primary {
+	    color: #fff;
+	    background-color: #337ab7;
+	    border-color: #2e6da4;	    
+	}
+
+	</style>
+</head>
+<body>
+<div class="main">
+	<h1 class="page-title">Registration Form</h1>
+	<img class="kcb-logo center-block" src="images/kcb-logo.png">
+	<div class="register-form center-block">
+		<div class="form-group">
+	    	<label for="email">Email address</label>
+	    	<input type="email" class="form-control" id="email" placeholder="Email">
+	 	</div>
+	  	<div class="form-group">
+	    	<label for="password">Password</label>
+	    	<input type="password" class="form-control" id="password" placeholder="Password">
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="passwordConfirm">Confirm Password</label>
+	    	<input type="password" class="form-control" id="passwordConfirm" placeholder="Confirm Password">
+	  	</div>
+	  	<div class="form-group">
+	  		<label>Gender</label>
+	  		<div>
+		  		<label class="radio-inline"><input type="radio" name="gender" value="M" checked>Male</label>
+		  		<label class="radio-inline"><input type="radio" name="gender" value="F">Female</label>
+		  		<label class="radio-inline"><input type="radio" name="gender" value="U">Secret</label>
+		  	</div>
+	  	</div>
+	  	<div class="form-group">
+	    	<label>Country</label>
+	    	<select class="form-control">
+	    		<option value="">Please Select a Country</option>
+			  	<option value="AU">Australia</option>
+			  	<option value="CH">China</option>
+			  	<option value="UK">UK</option>
+			 	<option value="USA">USA</option>			  	
+			</select>
+	  	</div>
+	  	<div class="form-group pull-right">
+	    	<button type="button" class="btn btn-primary">Register</button>
+	  	</div>
+	</div>
+</div>
+</body>
+</html>

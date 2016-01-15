@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kacha Account Register</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<style type="text/css">
+	
+	.form-control {
+		display: block;
+	    width: 100%;
+	    height: 34px;
+	    padding: 6px 12px;
+	    font-size: 14px;
+	    line-height: 1.42857143;
+	    color: #555;
+	    background-color: #fff;
+	    background-image: none;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	}
+
+	.radio-inline {
+	    margin-bottom: 0;
+	    font-weight: normal;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    padding-right: 10px;
+	}
+
+	input[type=radio] {
+		margin-right: 8px;
+	}
+
+	.register-form {
+		max-width: 500px;
+	}
+
+	.pull-right {
+		float: right;
+	}
+
+	.btn {
+		display: inline-block;
+	    padding: 6px 12px;
+	    margin-bottom: 0;
+	    font-size: 14px;
+	    font-weight: normal;
+	    line-height: 1.42857143;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    background-image: none;
+	    border: 1px solid transparent;
+	    border-radius: 4px;
+	}
+
+	.btn-primary {
+	    color: #fff;
+	    background-color: #337ab7;
+	    border-color: #2e6da4;	    
+	}
+
+	.err-message {
+		color: red;
+		padding-left: 15px;
+	}
+
+	.error {
+		color: red;
+	}
+
+	</style>
+
+	<script type="text/javascript">
+	(function(){
+		function trim(str) {
+			return str.replace(/(^\s*)|(\s*$)/g, "");
+		}
+
+		function _value(el) {
+			if (el.tagName == 'INPUT' || el.tagName == "SELECT") {
+				return el.value;
+			}
+			return "";
+		}
+
+		function Kacha(elements) {
+			this.elements = elements || [];
+		}
+
+		Kacha.prototype.val = function() {
+			if (this.elements.length == 0) {
+				return '';
+			}
+			if (this.elements.length == 1) {
+				return _value(this.elements[0]);
+			}
+			return "";
+		}
+
+		Kacha.prototype.addClass = function(className) {
+			for (var i=0; i<this.elements.length; i++) {
+				var el = this.elements[i];
+				el.className += ' ' + className
+			}
+			return this;
+		}
+
+		Kacha.prototype.removeClass = function(className) {
+			var regMid = new RegExp('\\s+' + className + '\\s+');
+	        var regRight = new RegExp('\\s+' + className + '$');
+	        var regLeft = new RegExp('^' + className + '\\s+');
+	        var regOnly = new RegExp('^' + className + '$');
+			for (var i=0; i<this.elements.length; i++) {
+				var el = this.elements[i];
+				var result = el.className.replace(regMid, ' ').replace(regRight, '').replace(regLeft, '').replace(regOnly, '');
+				el.className = result;
+			}
+			return this;
+		}
+
+		Kacha.prototype.text = function(content) {
+			for (var i=0; i<this.elements.length; i++) {
+				var el = this.elements[i];
+				el.innerText = content;
+			}
+			return this;
+		}
+
+		function $(selector) {
+			var elements = document.querySelectorAll(selector);
+			return new Kacha(elements);
+		}
+
+		$.isEmpty = function(str) {
+			return !!!str;
+		}
+
+		function showError(formGroupSelector, message) {
+			$(formGroupSelector + " .field-name").addClass("error");
+			$(formGroupSelector + " .err-message").text(message);
+		}
+
+		function clearAllError() {
+			$(".field-name").removeClass("error");
+			$(".err-message").text("");
+		}
+
+		function checkMandatory(str) {
+			return $.isEmpty(str) ? "Required" : "";
+		}
+
+		function checkEmailFormat(str) {
+			if (!/^.+@.+$/.test(str)) {
+				return "Invalid email format";
+			}
+			return "";		
+		}
+
+		function checkPasswordFormat(str) {
+			if (!/^[a-zA-Z0-9]{6,18}$/.test(str)) {
+				return "Should be 6-19 chars/numbers"
+			} 
+			if (!/[a-z]/.test(str) || !/[A-Z]/.test(str) || !/[0-9]/.test(str)) {
+				return "Should contains at least 1 uppercase&lowercase&number";
+			}
+		}
+
+		function validateEmail(str) {
+			return checkMandatory(str) || checkEmailFormat(str);
+		}
+
+		function validatePassword(str) {
+			return checkMandatory(str) || checkPasswordFormat(str);
+		}
+
+		function validatePasswordConfirm(password, passwordConfirm) {
+			if (password !== passwordConfirm) {
+				return "Not match password";
+			}
+		}
+
+		function validateCountry(str) {
+			return checkMandatory(str);
+		}
+
+		function validateForm() {
+			var email = $("#emailSection input").val();
+			var password = $("#passwordSection input").val();
+			var passwordConfirm = $("#passwordConfirmSection input").val();
+			var country = $("#countrySection select").val();
+
+			var emailError = validateEmail(email);
+			if (emailError) {
+				showError("#emailSection", emailError);
+			}
+			var passwordError = validatePassword(password);
+			if (passwordError) {
+				showError("#passwordSection", passwordError);
+			}
+			var passwordConfirmError = validatePasswordConfirm(password, passwordConfirm);
+			if (passwordConfirmError) {
+				showError("#passwordConfirmSection", passwordConfirmError);
+			}
+			var countryError = validateCountry(country);
+			if (countryError) {
+				showError("#countrySection", countryError);
+			}
+		}
+
+		window.onload = function(){
+			var btnRegister = document.getElementById("btnRegister");
+			btnRegister.onclick = function(){
+				clearAllError();
+				validateForm();
+			}	
+		}
+		
+	})();
+	</script>
+</head>
+<body>
+<div class="main">
+	<h1 class="page-title">Registration Form</h1>
+	<img class="kcb-logo center-block" src="images/kcb-logo.png">
+	<div class="register-form center-block">
+		<div class="form-group" id="emailSection">
+	    	<label class="field-name" for="email">Email address</label><span class="err-message"></span>
+	    	<input type="email" class="form-control" id="email" placeholder="Email">
+	 	</div>
+	  	<div class="form-group" id="passwordSection">
+	    	<label class="field-name" for="password">Password</label><span class="err-message"></span>
+	    	<input type="password" class="form-control" id="password" placeholder="Password">
+	  	</div>
+	  	<div class="form-group" id="passwordConfirmSection">
+	    	<label class="field-name" for="passwordConfirm">Confirm Password</label><span class="err-message"></span>
+	    	<input type="password" class="form-control" id="passwordConfirm" placeholder="Confirm Password">
+	  	</div> 
+	  	<div class="form-group" id="genderSection">
+	  		<label class="field-name">Gender</label>
+	  		<div>
+		  		<label class="radio-inline"><input type="radio" name="gender" value="M" checked>Male</label>
+		  		<label class="radio-inline"><input type="radio" name="gender" value="F">Female</label>
+		  		<label class="radio-inline"><input type="radio" name="gender" value="U">Secret</label>
+		  	</div>
+	  	</div>
+	  	<div class="form-group" id="countrySection">
+	    	<label class="field-name">Country</label><span class="err-message"></span>
+	    	<select class="form-control">
+	    		<option value="">Please Select a Country</option>
+			  	<option value="AU">Australia</option>
+			  	<option value="CH">China</option>
+			  	<option value="UK">UK</option>
+			 	<option value="USA">USA</option>			  	
+			</select>
+	  	</div>
+	  	<div class="form-group pull-right">
+	    	<button id="btnRegister" type="button" class="btn btn-primary">Register</button>
+	  	</div>
+	</div>
+</div>
+</body>
+</html>
