@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Exercise 1</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	select {
+		height: 34px;
+		width: 100px;
+		font-size: 14px;
+		color: #555;
+		border: 1px solid #ccc;
+	    border-radius: 4px;
+	}
+	</style>
+	<script type="text/javascript">
+	(function(){
+		var CITIES = {
+			"BJ": [
+				{name: "北京", key: "BJ"}
+			],
+			"SH": [
+				{name: "上海", key: "SH"}
+			],
+			"HLJ": [
+				{name: "哈尔滨", key: "HRB"},
+				{name: "佳木斯", key: "JMS"},
+				{name: "齐齐哈尔", key: "QQHR"}	
+			]
+		};
+
+		function clearCities() {
+			var cityEl = document.getElementById("city");
+			for (var i=cityEl.length-1; i>0; i--) {
+				cityEl.remove(i);
+			}
+		}
+
+		function changeCityOptions(stateKey) {
+			clearCities();
+			var cities = CITIES[stateKey];
+			var cityEl = document.getElementById("city");
+			for (var i=0; i<cities.length; i++) {
+				var city = cities[i];
+				var option = document.createElement("option");
+				option.text = city.name;
+				option.value = city.key;
+				cityEl.add(option);
+			}
+		}
+
+		window.onload = function(){
+			var stateEl = document.getElementById("state");
+
+			stateEl.addEventListener('change', function(){
+				var state = stateEl.value;
+				changeCityOptions(state);
+			});
+		}
+	})();
+	</script>
+</head>
+<body>
+
+<h1>Please select you hometown city:</h1>
+<select id="state">
+	<option value="">省</option>
+	<option value="BJ">北京</option>
+	<option value="SH">上海</option>
+	<option value="HLJ">黑龙江</option>
+</select>
+<select id="city">
+	<option value="">市</option>
+</select>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Basic Javascript</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	</style>
+	<script type="text/javascript">
+	(function(){
+		function add() {
+			var num1 = document.getElementById("num1").value;
+			var num2 = document.getElementById("num2").value;
+			var sum = parseInt(num1) + parseInt(num2);
+			
+			document.getElementById("result").value = sum;
+		}
+
+		window.onload = function(){
+			document.getElementById("num1").focus();
+
+			var btn = document.getElementById("calculate");
+			btn.addEventListener('click', add);
+		}
+	})();
+	</script>
+</head>
+<body>
+<h1>Calculator:</h1>
+<input type="text" id="num1"> 
+<span class="operator">+</span> 
+<input type="text" id="num2">
+<span class="operator">=</span>
+<input type="text" id="result" readonly="readonly">
+<button id="calculate">Calculate</button>
+</body>
+</html>
