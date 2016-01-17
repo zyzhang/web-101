@@ -67,6 +67,7 @@ From [Wikipedia](https://zh.wikipedia.org/zh-cn/JavaScript):
 * Null
 * Undefined
 
+Samples: 
 	// String
 	var s1 = “Hello”;
 	var s2 = new String(“World");
